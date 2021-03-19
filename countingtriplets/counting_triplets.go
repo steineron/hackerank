@@ -12,7 +12,7 @@ import (
 // Complete the countTriplets function below.
 func countTriplets(arr []int64, r int64) int64 {
 	/*
-	   iterate arr once - collect infromation about each encountered number n.
+	   iterate arr once - collect information about each encountered number n.
 	   first - record and update it as a singlete - a candidate for the first occurance
 	   in a triplet (n,n*r, n*r^2)
 	   then check to see if it increases the number of tuples (n/r,n)
