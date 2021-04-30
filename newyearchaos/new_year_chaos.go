@@ -1,4 +1,5 @@
 package main
+
 /*
 It is New Year's Day and people are in line for the Wonderland rollercoaster ride. Each person wears a sticker indicating their initial position in the queue from 1 to n.
 
@@ -33,14 +34,39 @@ import (
 )
 
 // Complete the minimumBribes function below.
-func minimumBribes(q []int32) (int32,error) {
+func minimumBribes(q []int32) (int32, error) {
 
+	bribes := int32(0)
 
+	for i, v := range q {
+
+		// count the number of values u in the range [i+1,len(q)]
+		// which are smaller than v
+
+		b := int32(0) // bribes by v
+		for j, u := range q[i+1:] {
+
+			if v > u {
+				if int32(j) < 2+u {
+					// too many bribes
+				}
+				b++
+			}
+		}
+		if b <= 2 {
+			bribes += b
+		} else {
+			return -1, fmt.Errorf("too many bribles for %v", v)
+		}
+
+	}
+
+	return bribes, nil
 
 }
 
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 1024 * 1024)
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 
 	tTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
 	checkError(err)

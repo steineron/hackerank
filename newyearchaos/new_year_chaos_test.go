@@ -12,38 +12,70 @@ func Test_minimumBribes(t *testing.T) {
 		want    int32
 		wantErr bool
 	}
-	tests := []test {
+	tests := []test{
 		{
-			name:    "123456",
-			test:    testcase{
-				q: []int32{1,2,3,4,5,6},
+			name: "123456",
+			test: testcase{
+				q: []int32{1, 2, 3, 4, 5, 6},
 			},
 			want:    0,
 			wantErr: false,
 		},
 		{
-			name:    "123465",
-			test:    testcase{
-				q: []int32{1,2,3,4,6,5},
+			name: "1234 6 5",
+			test: testcase{
+				q: []int32{1, 2, 3, 4, 6, 5},
 			},
 			want:    1,
 			wantErr: false,
 		},
 		{
-			name:    "123645",
-			test:    testcase{
-				q: []int32{1,2,3,6,4,5},
+			name: "123 6 45",
+			test: testcase{
+				q: []int32{1, 2, 3, 6, 4, 5},
 			},
 			want:    2,
 			wantErr: false,
 		},
 		{
-			name:    "126345",
-			test:    testcase{
-				q: []int32{1,2,3,4,5,6},
+			name: "12 6 345",
+			test: testcase{
+				q: []int32{1, 2, 6, 3, 4, 5},
 			},
 			want:    -1,
 			wantErr: true,
+		},
+		{
+			name: "123 6 5 4",
+			test: testcase{
+				q: []int32{1, 2, 3, 6, 5, 4},
+			},
+			want:    3,
+			wantErr: false,
+		},
+		{
+			name: "1 3 2 6 5 4",
+			test: testcase{
+				q: []int32{1, 3, 2, 6, 5, 4},
+			},
+			want:    4,
+			wantErr: false,
+		},
+		{
+			name: "3 1 2 6 5 4",
+			test: testcase{
+				q: []int32{ 3,1, 2, 6, 5, 4},
+			},
+			want:    5,
+			wantErr: false,
+		},
+		{
+			name: "3 2 1 6 5 4",
+			test: testcase{
+				q: []int32{ 3, 2, 1, 6, 5, 4},
+			},
+			want:    6,
+			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
