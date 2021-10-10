@@ -34,6 +34,7 @@ func TestSorting(t *testing.T) {
 	var sorters = []Sorter{
 		&bubbler{},
 		&insertion{},
+		&merge{},
 	}
 
 	type test struct {
