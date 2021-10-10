@@ -31,7 +31,10 @@ func randomList(size int) []int {
 }
 
 func TestSorting(t *testing.T) {
-	sorter := &bubbler{}
+	var sorters = []Sorter{
+		&bubbler{},
+		&insertion{},
+	}
 
 	type test struct {
 		input    []int
@@ -65,9 +68,21 @@ func TestSorting(t *testing.T) {
 
 	for i, test := range tests {
 		t.Run(fmt.Sprintf("test %v", i), func(t *testing.T) {
-			sort := sorter.Sort(test.input)
-			if !reflect.DeepEqual(test.expected, sort) {
-				t.Errorf("%v did not sort correctly: %v", sorter, sort)
+			for _, sorter := range sorters {
+				var in []int
+				if test.input != nil {
+					in = make([]int, len(test.input))
+					copy(in, test.input)
+				}
+
+				sort := sorter.Sort(in)
+				if !reflect.DeepEqual(test.expected, sort) {
+					t.Errorf("%v did not sort correctly: %v", sorter, sort)
+				} else {
+					t.Logf("%v sort correctly: %v", sorter, sort)
+
+				}
+
 			}
 		})
 	}
