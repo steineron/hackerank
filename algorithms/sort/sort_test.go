@@ -35,6 +35,7 @@ func TestSorting(t *testing.T) {
 		&bubbler{},
 		&insertion{},
 		&merge{},
+		&quick{},
 	}
 
 	type test struct {
@@ -59,10 +60,10 @@ func TestSorting(t *testing.T) {
 			input:    []int{2, 1},
 			expected: []int{1, 2},
 		}, {
-			input:    sortedList(200),
+			input:    unsortedList(200),
 			expected: sortedList(200),
 		}, {
-			input:    unsortedList(200),
+			input:    sortedList(200),
 			expected: sortedList(200),
 		},
 	}
