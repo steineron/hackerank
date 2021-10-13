@@ -36,6 +36,7 @@ func TestSorting(t *testing.T) {
 		&insertion{},
 		&merge{},
 		&quick{},
+		&heap{},
 	}
 
 	type test struct {
